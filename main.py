@@ -14,16 +14,15 @@ print(word_counter)
 def sort_chars(file):
     chars_dict = {}
     lower_case_file = file.lower()
-    char_count = 0
 
-    for char in lower_case_file:
+    filtered_file = "".join([char for char in lower_case_file if char.isalpha()])
+
+    for char in filtered_file:
         
         if char in chars_dict:
-            char_count = chars_dict[char]
-            char_count += 1
-            chars_dict[char] = char_count
+            chars_dict[char] += 1
         else:
-            chars_dict[char] = 1  
+            chars_dict[char] = 1
 
     return chars_dict
         
@@ -33,7 +32,10 @@ def main():
 
     sorted_dict = sort_chars(file_contents)
 
-    print(sorted_dict)
+    #print(sorted_dict)
+
+    for key in sorted_dict:
+        print(f"The character '{key}' was found {sorted_dict[key]} times")    
 
 import os
 os.system('clear')
